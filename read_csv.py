@@ -5,8 +5,7 @@ f = open('./tasks.csv', 'r')
 try:
 	reader = csv.reader(f)
 	for row in reader:
-		print(row)
-		if(row[0] == 'ISBN'):
+		if(row[0] == 'Book_ID'):
 			print row[0]
 		elif(row[0] == 'sy'):
 			print row[0]
