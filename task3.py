@@ -1,16 +1,20 @@
 from mrjob.job import MRJob
 
 class MRWordCounter(MRJob):
+    data=[]
+    length=[]
+    val=[]
     def mapper(self, key, line):
             line=line.split(',')
             numline=list(map(int, line))
-            print sum(numline), len(numline)
-            yield sum(numline),len(numline)
+            self.data.append(sum(numline))
+            self.length.append(len(numline))
+            yield sum(self.data),sum(self.length)
 
     def reducer(self, num, values):
-            print num,values, num/values
-            pass
-            yield 0, max(maxline)
+            values=float(max(values))
+            self.val.append(float(num / values))
+            yield "The mean is ",max(self.val)
 
 
 
