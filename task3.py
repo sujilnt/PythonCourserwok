@@ -9,12 +9,13 @@ class MRWordCounter(MRJob):
             numline=list(map(int, line))
             self.data.append(sum(numline))
             self.length.append(len(numline))
-            yield sum(self.data),sum(self.length)
+            if(len(self.data)==1):
+                yield sum(self.data),sum(self.length)
 
     def reducer(self, num, values):
             values=float(max(values))
             self.val.append(float(num / values))
-            yield "The mean is ",max(self.val)
+            yield "The mean is ...",max(self.val)
 
 
 

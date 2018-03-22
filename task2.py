@@ -9,7 +9,7 @@ class MRWordCounter(MRJob):
     def reducer(self, num, values):
             numline = list(map(int, values))
             maxline=list(numline)
-            yield 0, max(maxline)
+            yield "The max value is ", max(maxline)
 
 
 
