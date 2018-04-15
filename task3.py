@@ -9,8 +9,7 @@ class MRWordCounter(MRJob):
             numline=list(map(int, line))
             self.data.append(sum(numline))
             self.length.append(len(numline))
-            if(len(self.data)==1):
-                yield sum(self.data),sum(self.length)
+            yield sum(self.data),sum(self.length)
 
     def reducer(self, num, values):
             values=float(max(values))
